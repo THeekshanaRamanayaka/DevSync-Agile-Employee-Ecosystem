@@ -37,8 +37,8 @@ export class LoginComponent {
       this.authService.login(email, password).subscribe({
         next: (user) => {
           this.isLoading = false;
-          // this.authService.redirectBasedOnRole(user);
           alert('Login successful');
+          this.authService.redirectBasedOnRole(user);
           
         },
         error: (error) => {
