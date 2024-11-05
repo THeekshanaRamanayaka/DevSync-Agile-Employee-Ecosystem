@@ -17,7 +17,7 @@ export class SidebarComponent {
 
   @HostListener('window:resize', ['$event'])
   onResize(event: Event): void {
-    if (window.innerWidth >= 1024) { // lg breakpoint
+    if (window.innerWidth >= 1024) {
       this.isSidebarOpen = true;
     } else {
       this.isSidebarOpen = false;
