@@ -1,1 +1,111 @@
-<p>sidebar works!</p>
+<button
+      class="lg:hidden fixed top-4 left-4 z-50 bg-blue-500 text-white p-2 rounded-full"
+      (click)="toggleSidebar()"
+      [class.hidden]="isSidebarOpen">
+      ☰
+    </button>
+
+    <!-- Sidebar -->
+    <nav class="fixed top-0 left-0 h-screen bg-white shadow-lg w-[280px] py-6 px-4 font-sans overflow-auto transition-transform duration-300 ease-in-out lg:translate-x-0 z-40"
+      [ngClass]="{'translate-x-0': isSidebarOpen, '-translate-x-full': !isSidebarOpen}">
+      
+      <div class="mb-3">
+        <button 
+          class="lg:hidden text-gray-500 hover:text-gray-700 text-end"
+          (click)="toggleSidebar()">
+          ✕
+        </button>
+        <a href="javascript:void(0)">
+          <img src="assets/High Resolution Logo (1).png" alt="logo" class="w-[160px] mx-auto" />
+        </a>
+      </div>
+      <hr>
+
+      <!-- Dashboard Section -->
+      <ul class="mt-4">
+        <li>
+          <a href="javascript:void(0)"
+            class="text-black hover:text-blue-600 text-sm flex items-center hover:bg-blue-50 rounded px-4 py-3 transition-all">
+            <img src="assets/sidebar/Dashboard Tile Icon.svg" class="w-[20px] h-[20px] mr-4" alt="">
+            <span>Dashboard</span>
+          </a>
+        </li>
+      </ul>
+
+      <!-- Workforce Management Section -->
+      <div class="mt-4">
+        <h6 class="text-blue-600 text-sm font-bold px-4">Workforce Management</h6>
+        <ul class="mt-3">
+          <li>
+            <a href="javascript:void(0)"
+              class="text-black hover:text-blue-600 text-sm flex items-center hover:bg-blue-50 rounded px-4 py-3 transition-all">
+              <img src="assets/sidebar/Departments SVG Icon.svg" class="w-[20px] h-[20px] mr-4" alt="">
+              <span>Department Management</span>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)"
+              class="text-black hover:text-blue-600 text-sm flex items-center hover:bg-blue-50 rounded px-4 py-3 transition-all">
+              <img src="assets/sidebar/Employee Group Icon.svg" class="w-[20px] h-[20px] mr-4" alt="">
+              <span>Employee Management</span>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)"
+              class="text-black hover:text-blue-600 text-sm flex items-center hover:bg-blue-50 rounded px-4 py-3 transition-all">
+              <img src="assets/sidebar/Skills SVG Icon.svg" class="w-[20px] h-[20px] mr-4" alt="">
+              <span>Skill Management</span>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)"
+              class="text-black hover:text-blue-600 text-sm flex items-center hover:bg-blue-50 rounded px-4 py-3 transition-all">
+              <img src="assets/sidebar/Projects Vector Icon.svg" class="w-[20px] h-[20px] mr-4" alt="">
+              <span>Project Management</span>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)"
+              class="text-black hover:text-blue-600 text-sm flex items-center hover:bg-blue-50 rounded px-4 py-3 transition-all">
+              <img src="assets/sidebar/Performance Graph Icon.svg" class="w-[20px] h-[20px] mr-4" alt="">
+              <span>Performance Management</span>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)"
+              class="text-black hover:text-blue-600 text-sm flex items-center hover:bg-blue-50 rounded px-4 py-3 transition-all">
+              <img src="assets/sidebar/Analytic Report Icon.svg" class="w-[20px] h-[20px] mr-4" alt="">
+              <span>Reports</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Actions Section -->
+      <div class="mt-6">
+        <h6 class="text-blue-600 text-sm font-bold px-4">Actions</h6>
+        <ul class="mt-3">
+          <li>
+            <a href="javascript:void(0)"
+              class="text-black hover:text-blue-600 text-sm flex items-center hover:bg-blue-50 rounded px-4 py-3 transition-all">
+              <img src="assets/sidebar/Profile Circle Icon.svg" class="w-[20px] h-[20px] mr-4" alt="">
+              <span>Profile</span>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)"
+              class="text-black hover:text-blue-600 text-sm flex items-center hover:bg-blue-50 rounded px-4 py-3 transition-all">
+              <img src="assets/sidebar/Logout Icon.svg" class="w-[20px] h-[20px] mr-4" alt="">
+              <span>Logout</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Overlay -->
+    <div
+      class="fixed inset-0 bg-black bg-opacity-50 transition-opacity duration-300 lg:hidden"
+      [ngClass]="{'opacity-100 visible': isSidebarOpen, 'opacity-0 invisible': !isSidebarOpen}"
+      (click)="toggleSidebar()">
+    </div>
