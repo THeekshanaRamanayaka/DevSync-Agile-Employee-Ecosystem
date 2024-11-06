@@ -1,4 +1,4 @@
-<div class="sticky top-0 z-50 mt-1">
+<div class="sticky top-0 z-10 mt-1">
     <app-header></app-header>
 </div>
 
@@ -13,7 +13,19 @@
 
             <!-- Chart Section -->
             <div class="w-full mt-10 lg:mt-10">
+                <div class="flex gap-5">
+                    <div class="w-1/2">
+                        <app-job-levels></app-job-levels>
+                    </div>
+
+                    <div class="w-1/2">
+                        <app-maritual-status></app-maritual-status>
+                    </div>
+                </div>
                 <app-chart></app-chart>
+                <div class="mt-6">
+                    <app-table></app-table>
+                </div>
             </div>
         </div>
 

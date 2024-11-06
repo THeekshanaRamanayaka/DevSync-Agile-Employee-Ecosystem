@@ -3,17 +3,15 @@ export interface User {
     email: string;
     firstName: string;
     lastName: string;
-    // role: string;
-    // department: string;
     role: UserRole;
     department: Department;
     position: string;
 }
 
 export enum UserRole {
-    SYSTEM_ADMIN = 'SYSTEM_ADMIN',
-    DEPARTMENT_MANAGER = 'DEPARTMENT_MANAGER',
-    EMPLOYEE = 'EMPLOYEE'
+    Admin = 'Admin',
+    manager = 'manager',
+    employee = 'employee'
   }
   
   export enum Department {

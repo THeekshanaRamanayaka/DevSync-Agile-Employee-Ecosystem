@@ -1,35 +1,77 @@
-import { RouterModule, Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 import { LoginComponent } from './core/auth/components/login/login.component';
 import { AuthGuard } from './core/auth/guards/auth.guard';
 import { RoleGuard } from './core/auth/guards/role.guard';
 import { UserRole } from './core/auth/models/user.interface';
-import { NgModule } from '@angular/core';
+import { AdminComponent } from './features/admin/admin.component';
+import { EmployeesComponent } from './features/employees/employees.component';
+import { ManagerComponent } from './features/manager/manager.component';
+import { DashboardComponent } from './layout/components/dashboard/dashboard.component';
 
 export const routes: Routes = [
-    { path: 'login', component: LoginComponent },
+    { 
+        path: 'login', 
+        component: LoginComponent 
+    },
     { 
         path: 'admin',
+        component: AdminComponent,
         canActivate: [AuthGuard, RoleGuard],
-        data: { role: UserRole.SYSTEM_ADMIN },
-        loadChildren: () => import('./features/admin/admin.module').then(m => m.AdminModule)
+        data: { role: UserRole.Admin },
+        children: [
+            {
+                path: 'dashboard',
+                component: DashboardComponent
+            },
+            {
+                path: '',
+                redirectTo: 'dashboard',
+                pathMatch: 'full'
+            }
+        ]
+
     },
     {
-        path: 'manager',
+        path: 'manager/:department', // Added department parameter
+        component: ManagerComponent,
         canActivate: [AuthGuard, RoleGuard],
-        data: { role: UserRole.DEPARTMENT_MANAGER },
-        loadChildren: () => import('./features/manager/manager.module').then(m => m.ManagerModule)
+        data: { role: UserRole.manager },
+        children: [
+            {
+                path: 'dashboard',
+                component: DashboardComponent
+            },
+            {
+                path: '',
+                redirectTo: 'dashboard',
+                pathMatch: 'full'
+            }
+        ]
     },
     {
         path: 'employee',
+        component: EmployeesComponent,
         canActivate: [AuthGuard, RoleGuard],
-        data: { role: UserRole.EMPLOYEE },
-        loadChildren: () => import('./features/employees/employees.module').then(m => m.EmployeesModule)
+        data: { role: UserRole.employee },
+        children: [
+            {
+                path: 'dashboard',
+                component: DashboardComponent
+            },
+            {
+                path: '',
+                redirectTo: 'dashboard',
+                pathMatch: 'full'
+            }
+        ]
     },
-    { path: '', redirectTo: 'login', pathMatch: 'full' }
+    { 
+        path: '', 
+        redirectTo: 'login', 
+        pathMatch: 'full' 
+    },
+    { 
+        path: '**', 
+        redirectTo: 'login' 
+    }
 ];
-
-@NgModule({
-    imports: [RouterModule.forRoot(routes)],
-    exports: [RouterModule]
-})
-export class AppRoutingModule {}
