@@ -1,0 +1,68 @@
+<div class="w-full max-w-4xl mx-auto">
+  <div class="rounded-xl shadow-lg bg-gray-50 p-3">
+    <!-- Calendar Header -->
+    <div class="flex items-center justify-between mb-6">
+      <button
+        (click)="prevMonth()"
+        class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+      >
+        &lt;
+      </button>
+      <h2 class="text-xl font-semibold text-gray-800">
+        {{ updateMonthYearDisplay() }}
+      </h2>
+      <button
+        (click)="nextMonth()"
+        class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+      >
+        &gt;
+      </button>
+    </div>
+
+    <!-- Calendar Grid -->
+    <div class="border border-gray-200 rounded-lg overflow-hidden">
+      <!-- Weekday Headers -->
+      <div class="grid grid-cols-7 bg-gray-50">
+        <div
+          *ngFor="let day of ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']"
+          class="py-2 text-center text-sm font-semibold text-gray-600"
+        >
+          {{ day }}
+        </div>
+      </div>
+
+      <!-- Calendar Days Grid -->
+      <div class="grid grid-cols-7">
+        <div
+          *ngFor="let day of calendarDays"
+          class="relative min-h-[40px] p-2 border-t border-l border-gray-200 first:border-l-0"
+          [class.bg-blue-50]="day.isCurrentDay"
+        >
+          <!-- Day Number -->
+          <span
+            class="inline-block px-1 text-sm"
+            [class.font-bold]="day.isCurrentDay"
+            [class.text-gray-900]="day.dayNumber"
+            [class.text-gray-400]="!day.dayNumber"
+          >
+            {{ day.dayNumber }}
+          </span>
+
+          <!-- Event Indicator -->
+          <div
+            *ngIf="day.hasEvent"
+            class="absolute bottom-2 right-2 w-2 h-2 rounded-full bg-blue-500"
+          ></div>
+
+          <!-- Optional: Event Preview -->
+          <div
+            *ngIf="day.hasEvent"
+            class="mt-1 text-xs text-blue-600 font-medium overflow-hidden"
+          >
+            <span class="block truncate">Event</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

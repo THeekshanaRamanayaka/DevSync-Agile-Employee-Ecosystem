@@ -1,1 +1,47 @@
-<p>chart works!</p>
+<div class="p-5">
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-5 gap-4 sm:gap-2">
+        <h2 class="text-xl font-semibold text-gray-800">Employee Performance</h2>
+        <div class="flex flex-wrap sm:flex-nowrap items-center gap-2 w-full sm:w-auto">
+            <select 
+                [(ngModel)]="selectedYear" 
+                (change)="updateChart()" 
+                class="w-full sm:w-auto p-2 border rounded-md bg-white text-gray-700 text-sm"
+            >
+                <option value="2023">2023</option>
+                <option value="2024">2024</option>
+            </select>
+            <span class="text-gray-500 hidden sm:inline">to</span>
+            <select 
+                [(ngModel)]="selectedEndYear" 
+                (change)="updateChart()" 
+                class="w-full sm:w-auto p-2 border rounded-md bg-white text-gray-700 text-sm"
+            >
+                <option value="2024">2024</option>
+                <option value="2025">2025</option>
+            </select>
+        </div>
+    </div>
+    
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-5">
+        <div class="bg-gray-100 p-4 rounded-lg shadow hover:shadow-lg transition-shadow">
+            <span class="block text-gray-600 text-sm">Total Task</span>
+            <span class="block text-xl sm:text-2xl font-bold text-gray-900">{{ totalTasks }}</span>
+        </div>
+        <div class="bg-gray-100 p-4 rounded-lg shadow hover:shadow-lg transition-shadow">
+            <span class="block text-gray-600 text-sm">Task Done</span>
+            <span class="block text-xl sm:text-2xl font-bold text-gray-900">{{ tasksDone }}</span>
+        </div>
+        <div class="bg-gray-100 p-4 rounded-lg shadow hover:shadow-lg transition-shadow">
+            <span class="block text-gray-600 text-sm">On Progress</span>
+            <span class="block text-xl sm:text-2xl font-bold text-gray-900">{{ tasksInProgress }}</span>
+        </div>
+    </div>
+  
+    <div class="h-96">
+        <canvas baseChart
+            [data]="barChartData"
+            [options]="barChartOptions"
+            [type]="barChartType">
+        </canvas>
+    </div>
+</div>

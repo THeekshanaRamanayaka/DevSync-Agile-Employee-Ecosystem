@@ -1,1 +1,27 @@
-<p>dashboard works!</p>
+<div class="sticky top-0 z-50 mt-1">
+    <app-header></app-header>
+</div>
+
+<div class="p-2 sm:p-4">
+    <div class="flex flex-col lg:flex-row min-h-screen relative">
+        <!-- Main Content Section -->
+        <div class="w-full lg:w-9/12 space-y-6">
+            <!-- Cards Section -->
+            <div class="w-full">
+                <app-cards></app-cards>
+            </div>
+
+            <!-- Chart Section -->
+            <div class="w-full mt-10 lg:mt-10">
+                <app-chart></app-chart>
+            </div>
+        </div>
+
+        <!-- Calendar Section -->
+        <div class="w-full lg:w-3/12 mt-6 lg:mt-0">
+            <div class="lg:fixed lg:right-0 lg:mr-3 lg:w-[calc(20%-1rem)]">
+                <app-calendar></app-calendar>
+            </div>
+        </div>
+    </div>
+</div>

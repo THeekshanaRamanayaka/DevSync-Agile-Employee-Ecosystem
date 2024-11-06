@@ -8,5 +8,13 @@ import { Component } from '@angular/core';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
+  handleMailClick() {
+    // Handle mail button click
+    console.log('Mail clicked');
+  }
 
+  handleNotificationClick() {
+    // Handle notification button click
+    console.log('Notification clicked');
+  }
 }

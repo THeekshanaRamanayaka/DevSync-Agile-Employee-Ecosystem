@@ -1,0 +1,5 @@
+@media (max-width: 640px) {
+    .chart-wrapper {
+      height: 300px; /* Smaller height for mobile */
+    }
+  }
