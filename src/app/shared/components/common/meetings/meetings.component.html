@@ -1,0 +1,53 @@
+<div class="p-2 h-64 bg-gray-100 rounded-lg shadow-sm max-w-md">
+    <div class="rounded-lg bg-white ">
+        <div class="flex items-center justify-between mb-1 p-1">
+            <h2 class="text-md font-normal text-gray-900 p-1">Upcoming meetings</h2>
+            <span class="bg-gray-300 text-gray-800 px-2.5 py-1 mr-1 rounded-full text-sm">
+                {{ meetings.length }}
+            </span>
+        </div>
+
+        <div class="m-1 mb-1">
+            <hr>
+        </div>
+
+        <div class="m-1 overflow-auto h-48">
+            <div class="rounded-lg">
+                <div class="space-y-4 m-1">
+                    <div *ngFor="let meeting of meetings" class="flex items-start gap-4 p-2">
+                        <!-- Date badge -->
+                        <div class="flex flex-col items-center min-w-[40px] text-center">
+                            <span class="text-xs text-gray-500 uppercase">
+                                {{ meeting.date | date:'MMM' }}
+                            </span>
+                            <span class="text-md font-semibold text-gray-900">
+                                {{ meeting.date | date:'d' }}
+                            </span>
+                        </div>
+
+                        <!-- Meeting details -->
+                        <div class="flex-1">
+                            <h3 class="text-xs font-medium text-gray-900">{{ meeting.title }}</h3>
+                            <p class="text-sm text-gray-500">{{ meeting.time }}</p>
+                        </div>
+
+                        <!-- Participants -->
+                        <div class="flex -space-x-2">
+                            <div *ngFor="let participant of meeting.participants.slice(0, 3)">
+                                <img [src]="participant.avatar" [alt]="'Participant ' + participant.id"
+                                    class="w-8 h-8 rounded-full border-2 border-white">
+                            </div>
+                            <div *ngIf="meeting.extraParticipants"
+                                class="w-8 h-8 rounded-full border-2 border-white bg-gray-100 flex items-center justify-center">
+                                <span class="text-xs text-gray-600">+{{ meeting.extraParticipants }}</span>
+                            </div>
+                        </div>
+                        <div class="m-1 mb-4">
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

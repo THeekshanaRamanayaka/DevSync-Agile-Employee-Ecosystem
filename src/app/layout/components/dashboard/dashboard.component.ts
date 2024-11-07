@@ -6,11 +6,12 @@ import { CardsComponent } from '../../../shared/components/common/cards/cards.co
 import { JobLevelsComponent } from "../../../shared/components/common/job-levels/job-levels.component";
 import { MaritualStatusComponent } from "../../../shared/components/common/maritual-status/maritual-status.component";
 import { TableComponent } from "../../../shared/components/common/table/table.component";
+import { MeetingsComponent } from '../../../shared/components/common/meetings/meetings.component';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [HeaderComponent, CalendarComponent, ChartComponent, CardsComponent, JobLevelsComponent, MaritualStatusComponent, TableComponent],
+  imports: [HeaderComponent, CalendarComponent, ChartComponent, CardsComponent, JobLevelsComponent, MaritualStatusComponent, TableComponent, MeetingsComponent],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
