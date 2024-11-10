@@ -7,11 +7,13 @@ import { JobLevelsComponent } from "../../../shared/components/common/job-levels
 import { MaritualStatusComponent } from "../../../shared/components/common/maritual-status/maritual-status.component";
 import { TableComponent } from "../../../shared/components/common/table/table.component";
 import { MeetingsComponent } from '../../../shared/components/common/meetings/meetings.component';
+import { DashPageComponent } from "../dash-page/dash-page.component";
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [HeaderComponent, CalendarComponent, ChartComponent, CardsComponent, JobLevelsComponent, MaritualStatusComponent, TableComponent, MeetingsComponent],
+  imports: [RouterOutlet,HeaderComponent, CalendarComponent, MeetingsComponent, DashPageComponent],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })

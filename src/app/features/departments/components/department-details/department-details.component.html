@@ -1,1 +1,88 @@
-<p>department-details works!</p>
+<div class="flex gap-5">
+    <div class="w-1/2">
+        <app-department-performance></app-department-performance>
+    </div>
+    <div class="w-1/2">
+        <!-- Add Department Button -->
+        <div class="flex justify-end">
+            <button type="button" (click)="addDepartment()"
+                class="focus:outline-none text-white bg-blue-600 hover:bg-blue-700 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">
+                + Add Department
+            </button>
+        </div>
+    </div>
+</div>
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-200">
+            <tr>
+                <th scope="col" class="px-6 py-3">Department name</th>
+                <th scope="col" class="px-6 py-3">
+                    <div class="flex items-center">HeadCount</div>
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    <div class="flex items-center">Department Head</div>
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    <div class="flex items-center">Creation Date</div>
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    <div class="flex items-center">Status</div>
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    <span class="flex items-center">Operations</span>
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    <span class="sr-only">Delete</span>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="bg-white border-b border-gray-700">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">HR</th>
+                <td class="px-6 py-4">60</td>
+                <td class="px-6 py-4">Helen Miller</td>
+                <td class="px-6 py-4">01/01/2018</td>
+                <td class="px-6 py-4"><span class="flex items-center text-sm font-medium text-gray-900 me-3"><span
+                            class="flex w-2.5 h-2.5 bg-green-500 rounded-full me-1.5 flex-shrink-0"></span>Active</span>
+                </td>
+                <td class="px-6 py-4 text-right">
+                    <a href="#" class="font-medium text-blue-600 hover:underline">Update</a>
+                </td>
+                <td class="px-6 py-4 text-right">
+                    <a href="#" class="font-medium text-red-600 hover:underline">Delete</a>
+                </td>
+            </tr>
+            <tr class="bg-white border-b border-gray-700">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">Software Development</th>
+                <td class="px-6 py-4">578</td>
+                <td class="px-6 py-4">Frank Damiand</td>
+                <td class="px-6 py-4">01/01/2018</td>
+                <td class="px-6 py-4"><span class="flex items-center text-sm font-medium text-gray-900 me-3"><span
+                            class="flex w-2.5 h-2.5 bg-green-500 rounded-full me-1.5 flex-shrink-0"></span>Active</span>
+                </td>
+                <td class="px-6 py-4 text-right">
+                    <a href="#" class="font-medium text-blue-600 hover:underline">Update</a>
+                </td>
+                <td class="px-6 py-4 text-right">
+                    <a href="#" class="font-medium text-red-600 hover:underline">Delete</a>
+                </td>
+            </tr>
+            <tr class="bg-white">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">Finance</th>
+                <td class="px-6 py-4">30</td>
+                <td class="px-6 py-4">John Doe</td>
+                <td class="px-6 py-4">01/01/2018</td>
+                <td class="px-6 py-4"><span class="flex items-center text-sm font-medium text-gray-900 me-3"><span
+                            class="flex w-2.5 h-2.5 bg-green-500 rounded-full me-1.5 flex-shrink-0"></span>Active</span>
+                </td>
+                <td class="px-6 py-4 text-right">
+                    <a href="#" class="font-medium text-blue-600 hover:underline">Update</a>
+                </td>
+                <td class="px-6 py-4 text-right">
+                    <a href="#" class="font-medium text-red-600 hover:underline">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

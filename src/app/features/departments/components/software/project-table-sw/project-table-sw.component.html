@@ -1,0 +1,36 @@
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <table class="w-full text-sm text-left rtl:text-right">
+      <thead class="text-xs uppercase bg-gray-100">
+        <tr>
+          <th scope="col" class="px-6 py-3">Project Id</th>
+          <th scope="col" class="px-6 py-3">Project Title</th>
+          <th scope="col" class="px-6 py-3">Duration</th>
+          <th scope="col" class="px-6 py-3">Team Members</th>
+          <th scope="col" class="px-6 py-3">Client</th>
+          <th scope="col" class="px-6 py-3">Total Income</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let project of projects" class="bg-white border-b hover:bg-gray-50">
+          <td class="px-6 py-4">{{project.id}}</td>
+          <td class="px-6 py-4">{{project.title}}</td>
+          <td class="px-6 py-4">{{project.duration}}</td>
+          <td class="px-6 py-4">
+            <div class="flex -space-x-2">
+              <ng-container *ngFor="let participant of project.meeting.participants.slice(0, 3)">
+                <img [src]="participant.avatar" 
+                     [alt]="'User ' + participant.id"
+                     class="w-8 h-8 rounded-full border-2 border-white">
+              </ng-container>
+              <div *ngIf="project.meeting.extraParticipants"
+                   class="w-8 h-8 rounded-full border-2 border-white bg-gray-100 flex items-center justify-center">
+                <span class="text-xs text-gray-600">+{{project.meeting.extraParticipants}}</span>
+              </div>
+            </div>
+          </td>
+          <td class="px-6 py-4">{{project.client}}</td>
+          <td class="px-6 py-4">{{project.totalIncome}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

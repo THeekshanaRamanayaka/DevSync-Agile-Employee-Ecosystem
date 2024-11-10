@@ -1,0 +1,24 @@
+<div class="mx-auto bg-white p-4 rounded-lg shadow-md">
+    <!-- Tab Navigation -->
+    <div class="rounded-t-xl">
+        <nav class="flex -mb-px space-x-8" aria-label="Tabs">
+            <button *ngFor="let tab of tabs" 
+                (click)="selectTab(tab.id)" 
+                [class]="getTabClasses(tab.id)" role="tab"
+                [attr.aria-selected]="selectedTabId === tab.id">
+                {{ tab.title }}
+            </button>
+        </nav>
+    </div>
+
+    <!-- Tab Content -->
+    <div class="mt-4">
+        <ng-container [ngSwitch]="selectedTabId">
+            <ng-container *ngFor="let tab of tabs">
+                <div *ngSwitchCase="tab.id" class="animate-fadeIn" role="tabpanel">
+                    <ng-container *ngComponentOutlet="tab.component"></ng-container>
+                </div>
+            </ng-container>
+        </ng-container>
+    </div>
+</div>

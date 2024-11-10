@@ -7,6 +7,13 @@ import { AdminComponent } from './features/admin/admin.component';
 import { EmployeesComponent } from './features/employees/employees.component';
 import { ManagerComponent } from './features/manager/manager.component';
 import { DashboardComponent } from './layout/components/dashboard/dashboard.component';
+import { DepartmentsComponent } from './features/departments/departments.component';
+import { DashPageComponent } from './layout/components/dash-page/dash-page.component';
+import { SkillsComponent } from './features/skills/skills.component';
+import { ProjectsComponent } from './features/projects/projects.component';
+import { PerformanceComponent } from './features/performance/performance.component';
+import { ReportsComponent } from './features/reports/reports.component';
+import { ProfileComponent } from './core/auth/components/profile/profile.component';
 
 export const routes: Routes = [
     { 
@@ -21,7 +28,35 @@ export const routes: Routes = [
         children: [
             {
                 path: 'dashboard',
-                component: DashboardComponent
+                component: DashPageComponent
+            },
+            {
+                path: 'department',
+                component: DepartmentsComponent
+            },
+            {
+                path: 'employee',
+                component: EmployeesComponent
+            },
+            {
+                path: 'skill',
+                component: SkillsComponent
+            },
+            {
+                path: 'project',
+                component: ProjectsComponent
+            },
+            {
+                path: 'performance',
+                component: PerformanceComponent
+            },
+            {
+                path: 'report',
+                component: ReportsComponent
+            },
+            {
+                path: 'profile',
+                component: ProfileComponent
             },
             {
                 path: '',

@@ -1,0 +1,160 @@
+<div class="max-w-7xl mx-auto bg-gray-50 p-6 rounded-lg">
+    <!-- Header -->
+    <div class="flex justify-between items-center mb-6">
+      <h1 class="text-2xl font-semibold flex items-center gap-2">
+        My Wallet
+        <i class="lucide-info text-gray-400 w-5 h-5"></i>
+      </h1>
+      <div class="flex items-center space-x-4">
+        <button class="bg-gray-100 text-gray-600 px-4 py-2 rounded-lg flex items-center gap-2">
+          {{ selectedPeriod }}
+          <i class="lucide-chevron-down w-4 h-4"></i>
+        </button>
+        <button class="bg-gray-100 text-gray-600 p-2 rounded-lg">
+          <i class="lucide-settings w-5 h-5"></i>
+        </button>
+      </div>
+    </div>
+  
+    <!-- Stats Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+      <!-- Income Card -->
+      <div class="bg-white p-6 rounded-lg shadow-sm">
+        <h2 class="text-gray-600">Total Income</h2>
+        <div class="flex items-center space-x-2 mt-2">
+          <h3 class="text-3xl font-bold">${{ totalIncome | number }}</h3>
+          <span class="text-green-500 flex items-center text-sm">
+            <i class="lucide-arrow-up-right w-4 h-4"></i>
+            {{ incomeGrowth }}%
+          </span>
+        </div>
+        <p class="text-gray-400 text-sm mt-2">Last 7 days income</p>
+      </div>
+  
+      <!-- Expenses Card -->
+      <div class="bg-white p-6 rounded-lg shadow-sm">
+        <h2 class="text-gray-600">Total Expenses</h2>
+        <div class="flex items-center space-x-2 mt-2">
+          <h3 class="text-3xl font-bold">${{ totalExpenses | number }}</h3>
+          <span class="text-red-500 flex items-center text-sm">
+            <i class="lucide-arrow-up-right w-4 h-4"></i>
+            {{ expensesGrowth }}%
+          </span>
+        </div>
+        <p class="text-gray-400 text-sm mt-2">Last 7 days expenses</p>
+      </div>
+  
+      <!-- Investment Card -->
+      <div class="bg-white p-6 rounded-lg shadow-sm">
+        <h2 class="text-gray-600">Total Investment</h2>
+        <div class="flex items-center space-x-2 mt-2">
+          <h3 class="text-3xl font-bold">${{ totalInvestment | number }}</h3>
+          <span class="text-green-500 flex items-center text-sm">
+            <i class="lucide-arrow-up-right w-4 h-4"></i>
+            {{ investmentGrowth }}%
+          </span>
+        </div>
+        <p class="text-gray-400 text-sm mt-2">Last 7 days return</p>
+      </div>
+    </div>
+  
+    <!-- Charts -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+      <!-- Balance Chart -->
+      <div class="bg-white p-6 rounded-lg shadow-sm">
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="text-gray-600 font-semibold">Balance Statistics</h2>
+          <i class="lucide-more-horizontal text-gray-400 w-5 h-5"></i>
+        </div>
+        <div class="h-64">
+          <ngx-charts-line-chart
+            [results]="balanceChartData"
+            [gradient]="false"
+            [xAxis]="true"
+            [yAxis]="true"
+            [legend]="false"
+            [showXAxisLabel]="false"
+            [showYAxisLabel]="false"
+            [timeline]="false">
+          </ngx-charts-line-chart>
+        </div>
+      </div>
+  
+      <!-- Money Chart -->
+      <div class="bg-white p-6 rounded-lg shadow-sm">
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="text-gray-600 font-semibold">Money Statistics</h2>
+          <i class="lucide-more-horizontal text-gray-400 w-5 h-5"></i>
+        </div>
+        <div class="h-64">
+          <ngx-charts-line-chart
+            [results]="moneyChartData"
+            [gradient]="false"
+            [xAxis]="true"
+            [yAxis]="true"
+            [legend]="false"
+            [showXAxisLabel]="false"
+            [showYAxisLabel]="false"
+            [timeline]="false">
+          </ngx-charts-line-chart>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Transaction History -->
+    <div class="bg-white p-6 rounded-lg shadow-sm">
+      <div class="flex justify-between items-center mb-6">
+        <div>
+          <h2 class="text-xl font-semibold">Transaction History</h2>
+          <p class="text-gray-400 text-sm mt-1">Recent transaction details</p>
+        </div>
+        <div class="flex items-center space-x-4">
+          <div class="relative">
+            <input
+              type="text"
+              [(ngModel)]="searchQuery"
+              (ngModelChange)="onSearch($event)"
+              placeholder="Search transactions..."
+              class="bg-gray-100 text-gray-600 pl-10 pr-4 py-2 rounded-lg w-48"
+            />
+            <i class="lucide-search absolute left-3 top-2.5 w-4 h-4 text-gray-400"></i>
+          </div>
+          <button 
+            (click)="exportTransactions()"
+            class="bg-gray-100 text-gray-600 px-4 py-2 rounded-lg flex items-center gap-2">
+            <i class="lucide-download w-4 h-4"></i>
+            Export
+          </button>
+        </div>
+      </div>
+  
+      <div class="overflow-x-auto">
+        <table class="w-full">
+          <thead>
+            <tr class="border-b border-gray-200">
+              <th class="text-left py-3 px-4 text-gray-600 font-medium">Transaction</th>
+              <th class="text-left py-3 px-4 text-gray-600 font-medium">Date</th>
+              <th class="text-right py-3 px-4 text-gray-600 font-medium">Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let transaction of transactions" class="border-b border-gray-100">
+              <td class="py-3 px-4">
+                <div class="flex items-center gap-3">
+                  <img [src]="transaction.sender.avatar" alt="avatar" class="w-8 h-8 rounded-full">
+                  <div>
+                    <p class="font-medium">{{ transaction.sender.name }}</p>
+                    <p class="text-sm text-gray-500">{{ transaction.id }}</p>
+                  </div>
+                </div>
+              </td>
+              <td class="py-3 px-4 text-gray-500">{{ transaction.date }}</td>
+              <td [ngClass]="getTransactionClass(transaction.type)" class="py-3 px-4 text-right font-medium">
+                {{ formatAmount(transaction.amount) }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
