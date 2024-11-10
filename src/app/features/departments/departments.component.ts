@@ -15,7 +15,7 @@ interface Tab {
 @Component({
   selector: 'app-departments',
   standalone: true,
-  imports: [RouterLink, CommonModule],
+  imports: [CommonModule],
   templateUrl: './departments.component.html',
   styleUrl: './departments.component.css'
 })

@@ -1,1 +1,153 @@
-<p>employee-create works!</p>
+<div class="rounded-lg bg-gray-100 flex w-full">
+    <div class="relative p-3 w-full">
+        <div class="relative bg-gray-50 shadow rounded-3xl">
+            <div class="max-w-2xl mx-auto">
+                <div class="divide-y divide-gray-200">
+                    <div class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
+                        <h2 class="text-2xl font-bold mb-6 text-center text-gray-800">Add New Employee</h2>
+
+                        <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()" class="space-y-6">
+                            <div class="grid grid-cols-2 gap-4">
+                                <!-- Employee ID -->
+                                <div class="form-group">
+                                    <label class="block text-sm font-medium text-gray-700 mx-2">Employee ID</label>
+                                    <input type="text" formControlName="employeeId"
+                                        class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm bg-white text-sm"
+                                        readonly>
+                                </div>
+
+                                <!-- Name -->
+                                <div class="form-group">
+                                    <label class="block text-sm font-medium text-gray-700 mx-2">Name</label>
+                                    <input type="text" formControlName="name"
+                                        class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm text-sm bg-white"
+                                        [ngClass]="{'border-red-500': employeeForm.get('name')?.touched && employeeForm.get('name')?.invalid}">
+                                    <div *ngIf="employeeForm.get('name')?.touched && employeeForm.get('name')?.invalid"
+                                        class="text-red-500 text-sm mt-1">
+                                        <div *ngIf="employeeForm.get('name')?.errors?.['required']">Name is required
+                                        </div>
+                                        <div *ngIf="employeeForm.get('name')?.errors?.['minlength']">Name must be at
+                                            least 2 characters</div>
+                                    </div>
+                                </div>
+
+                                <!-- Department -->
+                                <div class="form-group">
+                                    <label class="block text-sm font-medium text-gray-700 mx-2">Department</label>
+                                    <select formControlName="department"
+                                        class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm text-sm bg-white"
+                                        [ngClass]="{'border-red-500': employeeForm.get('department')?.touched && employeeForm.get('department')?.invalid}">
+                                        <option value="">Select Department</option>
+                                        <option *ngFor="let dept of departments" [value]="dept">{{dept}}</option>
+                                    </select>
+                                    <div *ngIf="employeeForm.get('department')?.touched && employeeForm.get('department')?.invalid"
+                                        class="text-red-500 text-sm mt-1">
+                                        Department is required
+                                    </div>
+                                </div>
+
+                                <!-- Role -->
+                                <div class="form-group">
+                                    <label class="block text-sm font-medium text-gray-700 mx-2">Role</label>
+                                    <select formControlName="role"
+                                        class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm text-sm bg-white"
+                                        [ngClass]="{'border-red-500': employeeForm.get('role')?.touched && employeeForm.get('role')?.invalid}">
+                                        <option value="">Select Role</option>
+                                        <option *ngFor="let role of roles" [value]="role">{{role}}</option>
+                                    </select>
+                                    <div *ngIf="employeeForm.get('role')?.touched && employeeForm.get('role')?.invalid"
+                                        class="text-red-500 text-sm mt-1">
+                                        Role is required
+                                    </div>
+                                </div>
+
+                                <!-- Position -->
+                                <div class="form-group">
+                                    <label class="block text-sm font-medium text-gray-700 mx-2">Position</label>
+                                    <select formControlName="position"
+                                        class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm text-sm bg-white"
+                                        [ngClass]="{'border-red-500': employeeForm.get('position')?.touched && employeeForm.get('position')?.invalid}">
+                                        <option value="">Select Position</option>
+                                        <option *ngFor="let position of positions" [value]="position">{{position}}
+                                        </option>
+                                    </select>
+                                    <div *ngIf="employeeForm.get('position')?.touched && employeeForm.get('position')?.invalid"
+                                        class="text-red-500 text-sm mt-1">
+                                        Position is required
+                                    </div>
+                                </div>
+
+                                <!-- Contact Number -->
+                                <div class="form-group">
+                                    <label class="block text-sm font-medium text-gray-700 mx-2">Contact Number</label>
+                                    <input type="tel" formControlName="contactNumber"
+                                        class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm text-sm bg-white"
+                                        [ngClass]="{'border-red-500': employeeForm.get('contactNumber')?.touched && employeeForm.get('contactNumber')?.invalid}">
+                                    <div *ngIf="employeeForm.get('contactNumber')?.touched && employeeForm.get('contactNumber')?.invalid"
+                                        class="text-red-500 text-sm mt-1">
+                                        Please enter a valid 10-digit phone number
+                                    </div>
+                                </div>
+
+                                <!-- Join Date -->
+                                <div class="form-group">
+                                    <label class="block text-sm font-medium text-gray-700 mx-2">Join Date</label>
+                                    <input type="date" formControlName="joinDate"
+                                        class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm text-sm bg-white"
+                                        [ngClass]="{'border-red-500': employeeForm.get('joinDate')?.touched && employeeForm.get('joinDate')?.invalid}">
+                                    <div *ngIf="employeeForm.get('joinDate')?.touched && employeeForm.get('joinDate')?.invalid"
+                                        class="text-red-500 text-sm mt-1">
+                                        Join date is required
+                                    </div>
+                                </div>
+
+                                <!-- Status -->
+                                <div class="form-group">
+                                    <label class="block text-sm font-medium text-gray-700 mx-2">Status</label>
+                                    <select formControlName="status"
+                                        class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm text-sm bg-white">
+                                        <option value="active">Active</option>
+                                        <option value="inactive">Inactive</option>
+                                    </select>
+                                </div>
+
+                                <!-- Email -->
+                                <div class="form-group">
+                                    <label class="block text-sm font-medium text-gray-700 mx-2">Email</label>
+                                    <input type="email" formControlName="email"
+                                        class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm text-sm bg-white"
+                                        [ngClass]="{'border-red-500': employeeForm.get('email')?.touched && employeeForm.get('email')?.invalid}">
+                                    <div *ngIf="employeeForm.get('email')?.touched && employeeForm.get('email')?.invalid"
+                                        class="text-red-500 text-sm mt-1">
+                                        Please enter a valid email address
+                                    </div>
+                                </div>
+
+                                <!-- Password -->
+                                <div class="form-group">
+                                    <label class="block text-sm font-medium text-gray-700 mx-2">Password</label>
+                                    <input type="password" formControlName="password"
+                                        class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm text-sm bg-white"
+                                        [ngClass]="{'border-red-500': employeeForm.get('password')?.touched && employeeForm.get('password')?.invalid}">
+                                    <div *ngIf="employeeForm.get('password')?.touched && employeeForm.get('password')?.invalid"
+                                        class="text-red-500 text-sm mt-1">
+                                        Password must be at least 8 characters and include uppercase, lowercase, number
+                                        and special character
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <div class="pt-4 flex justify-end">
+                                <button type="submit"
+                                    class="w-60  py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                    Add Employee
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
