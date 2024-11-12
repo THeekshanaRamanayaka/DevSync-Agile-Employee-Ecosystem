@@ -1,8 +1,7 @@
-import { Component, Type } from '@angular/core';
-import { ProjectListComponent } from "./components/project-list/project-list.component";
-import { ProjectCreateComponent } from "./components/project-create/project-create.component";
-import { TasksComponent } from "../tasks/tasks.component";
 import { CommonModule } from '@angular/common';
+import { Component, Type } from '@angular/core';
+import { TasksListComponent } from './components/tasks-list/tasks-list.component';
+import { TasksCreateComponent } from './components/tasks-create/tasks-create.component';
 
 interface Tab {
   id: string;
@@ -11,29 +10,24 @@ interface Tab {
 }
 
 @Component({
-  selector: 'app-projects',
+  selector: 'app-tasks',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './projects.component.html',
-  styleUrl: './projects.component.css'
+  templateUrl: './tasks.component.html',
+  styleUrl: './tasks.component.css'
 })
-export class ProjectsComponent {
+export class TasksComponent {
   tabs: Tab[] = [
     {
-      id: 'projects',
-      title: 'Projects',
-      component: ProjectListComponent
+      id: 'tasks',
+      title: 'Tasks',
+      component: TasksListComponent
     },
     {
-      id: 'add-project',
-      title: 'Add Project',
-      component: ProjectCreateComponent
-    },
-    // {
-    //   id: 'tasks',
-    //   title: 'Tasks',
-    //   component: TasksComponent
-    // }
+      id: 'add-task',
+      title: 'Add Task',
+      component: TasksCreateComponent
+    }
   ];
 
   selectedTabId = this.tabs[0].id;

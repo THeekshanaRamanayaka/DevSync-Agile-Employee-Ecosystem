@@ -1,0 +1,40 @@
+<div class="mt-4">
+  <h3 class="text-lg font-semibold mb-2">Tasks</h3>
+  <div class="grid grid-cols-3 gap-4">
+    <div class="bg-gray-50 p-4 rounded">
+      <h4 class="font-medium mb-2">To Do</h4>
+      <div class="space-y-2">
+        <div *ngFor="let task of getTasks('TODO')" class="bg-white p-2 rounded shadow">
+          <div class="flex justify-between items-center">
+            <span>{{task.title}}</span>
+            <button (click)="updateTaskStatus(task.id, 'IN_PROGRESS')" class="text-sm text-blue-500">
+              Start
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bg-gray-50 p-4 rounded">
+      <h4 class="font-medium mb-2">In Progress</h4>
+      <div class="space-y-2">
+        <div *ngFor="let task of getTasks('IN_PROGRESS')" class="bg-white p-2 rounded shadow">
+          <div class="flex justify-between items-center">
+            <span>{{task.title}}</span>
+            <button (click)="updateTaskStatus(task.id, 'COMPLETED')" class="text-sm text-green-500">
+              Complete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bg-gray-50 p-4 rounded">
+      <h4 class="font-medium mb-2">Completed</h4>
+      <div class="space-y-2">
+        <div *ngFor="let task of getTasks('COMPLETED')" class="bg-white p-2 rounded shadow">
+          <span>{{task.title}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-tasks-create [projectId]="projectId"></app-tasks-create>
+</div>
