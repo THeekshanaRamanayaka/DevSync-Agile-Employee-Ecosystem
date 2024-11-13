@@ -14,6 +14,9 @@ import { ProjectsComponent } from './features/projects/projects.component';
 import { PerformanceComponent } from './features/performance/performance.component';
 import { ReportsComponent } from './features/reports/reports.component';
 import { ProfileComponent } from './core/auth/components/profile/profile.component';
+import { ReviewCreateComponent } from './features/performance/components/review-create/review-create.component';
+import { ReviewEditComponent } from './features/performance/components/review-edit/review-edit.component';
+import { ReviewListComponent } from './features/performance/components/review-list/review-list.component';
 
 export const routes: Routes = [
     { 
@@ -48,7 +51,21 @@ export const routes: Routes = [
             },
             {
                 path: 'performance',
-                component: PerformanceComponent
+                component: PerformanceComponent,
+                children: [
+                    {
+                        path: 'create',
+                        component: ReviewCreateComponent
+                    },
+                    {
+                        path: 'edit/:id',
+                        component: ReviewEditComponent
+                    },
+                    {
+                        path: '',
+                        component: ReviewListComponent
+                    }
+                ]
             },
             {
                 path: 'report',

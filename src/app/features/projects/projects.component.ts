@@ -1,7 +1,6 @@
 import { Component, Type } from '@angular/core';
 import { ProjectListComponent } from "./components/project-list/project-list.component";
 import { ProjectCreateComponent } from "./components/project-create/project-create.component";
-import { TasksComponent } from "../tasks/tasks.component";
 import { CommonModule } from '@angular/common';
 
 interface Tab {
