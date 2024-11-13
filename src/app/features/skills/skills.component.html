@@ -1,1 +1,67 @@
-<p>skills works!</p>
+<div class="card w-full max-w-4xl bg-white shadow-md rounded-lg p-4">
+    <div class="card-header mb-4">
+        <h2 class="card-title text-lg font-medium">Skill Management</h2>
+    </div>
+    <div class="card-content">
+        <div class="mb-4">
+            <h3 class="text-lg font-medium mb-2">Add New Skill</h3>
+            <div class="flex space-x-2">
+                <input type="text" placeholder="Skill Name" class="input border rounded px-2 py-1 w-full"
+                    [(ngModel)]="newSkill.name" />
+                <input type="number" placeholder="Proficiency" class="input border rounded px-2 py-1 w-full"
+                    [(ngModel)]="newSkill.proficiency" />
+                <button class="btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-5 rounded"
+                    (click)="handleAddSkill()">Add</button>
+            </div>
+        </div>
+
+        <h3 class="text-lg font-medium mb-2">All Skills</h3>
+        <div class="overflow-x-auto">
+            <table class="table w-full border-collapse">
+                <thead>
+                    <tr>
+                        <th class="p-2 border text-left">Skill</th>
+                        <th class="p-2 border text-left">Proficiency</th>
+                        <th class="p-2 border text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let skill of skills">
+                        <td class="p-2 border">
+                            <input type="text" class="input border rounded px-2 py-1 w-full"
+                                *ngIf="editingSkill?.id === skill.id; else skillName" [(ngModel)]="editingSkill.name" />
+                            <ng-template #skillName>{{ skill.name }}</ng-template>
+                        </td>
+                        <td class="p-2 border">
+                            <input type="number" class="input border rounded px-2 py-1 w-full"
+                                *ngIf="editingSkill?.id === skill.id; else skillProficiency"
+                                [(ngModel)]="editingSkill.proficiency" />
+                            <ng-template #skillProficiency>{{ skill.proficiency }}</ng-template>
+                        </td>
+                        <td class="p-2 border text-center">
+                            <div class="flex justify-center space-x-2">
+                                <button class="btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded"
+                                    *ngIf="editingSkill?.id === skill.id; else actions">
+                                    <span (click)="handleUpdateSkill()">Save</span>
+                                    <span (click)="cancelEdit()">Cancel</span>
+                                </button>
+                                <ng-template #actions>
+                                    <button
+                                        class="btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded"
+                                        (click)="startEdit(skill)">
+                                        Edit
+                                    </button>
+                                    <button
+                                        class="btn bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded"
+                                        (click)="handleDeleteSkill(skill)">
+                                        Delete
+                                    </button>
+                                </ng-template>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

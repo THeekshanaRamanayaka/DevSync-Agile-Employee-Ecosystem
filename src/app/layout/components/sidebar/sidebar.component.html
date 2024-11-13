@@ -53,15 +53,6 @@
           <span>Employee Management</span>
         </a>
       </li>
-      <!-- <li>
-        <a (click)="changeSelectedHeader('Skill Management')"
-          routerLink="/admin/skill"
-          [ngClass]="{'bg-blue-200': selectedTab === 'Skill Management'}"
-          class="text-black hover:text-blue-600 text-sm flex items-center hover:bg-blue-200 rounded px-4 py-3 transition-all">
-          <img src="assets/sidebar/Skills SVG Icon.svg" class="w-[20px] h-[20px] mr-4" alt="">
-          <span>Skill Management</span>
-        </a>
-      </li> -->
       <li>
         <a (click)="changeSelectedHeader('Project Management')"
           routerLink="/admin/project"
@@ -69,6 +60,15 @@
           class="text-black hover:text-blue-600 text-sm flex items-center hover:bg-blue-200 rounded px-4 py-3 transition-all">
           <img src="assets/sidebar/Projects Vector Icon.svg" class="w-[20px] h-[20px] mr-4" alt="">
           <span>Project Management</span>
+        </a>
+      </li>
+      <li>
+        <a (click)="changeSelectedHeader('Skill Management')"
+          routerLink="/admin/skill"
+          [ngClass]="{'bg-blue-200': selectedTab === 'Skill Management'}"
+          class="text-black hover:text-blue-600 text-sm flex items-center hover:bg-blue-200 rounded px-4 py-3 transition-all">
+          <img src="assets/sidebar/Skills SVG Icon.svg" class="w-[20px] h-[20px] mr-4" alt="">
+          <span>Skill Management</span>
         </a>
       </li>
       <li>
