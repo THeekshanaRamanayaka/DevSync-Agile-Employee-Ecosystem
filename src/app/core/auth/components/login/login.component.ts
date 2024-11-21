@@ -8,7 +8,7 @@ import { User } from '../../models/user.interface';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [RouterLink, NgIf, CommonModule, ReactiveFormsModule],
+  imports: [NgIf, CommonModule, ReactiveFormsModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
