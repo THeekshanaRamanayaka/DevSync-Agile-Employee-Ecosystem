@@ -1,12 +1,16 @@
 export interface EmployeeInterface {
-    employeeId: string;
-    name: string;
-    department: string;
+    employee_id: number;
+    employeeName: string;
     role: string;
     position: string;
     contactNumber: string;
-    joinDate: Date;
-    status: 'active' | 'inactive';
+    address: string;
+    city: string;
+    gender: string;
+    marriedStatus: string;
+    status: string;
+    joinDate: string;
+    department: string;
     email: string;
     password: string;
 }

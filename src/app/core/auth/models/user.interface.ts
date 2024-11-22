@@ -1,21 +1,27 @@
 export interface User {
-    id: string;
-    email: string;
-    firstName: string;
-    lastName: string;
+    employeeId: string;
+    employeeName: string;
     role: UserRole;
-    department: Department;
     position: string;
+    contactNumber: string;
+    address: string;
+    city: string;
+    gender: string;
+    marriedStatus: string;
+    status: string;
+    joinDate: Date;
+    department: Department;
+    email: string;
 }
 
 export enum UserRole {
     Admin = 'Admin',
-    manager = 'manager',
-    employee = 'employee'
+    manager = 'Manager',
+    employee = 'Employee'
   }
   
   export enum Department {
-    SOFTWARE_DEVELOPMENT = 'SOFTWARE_DEVELOPMENT',
+    SOFTWARE_DEVELOPMENT = 'SOFTWARE DEVELOPMENT',
     HR = 'HR',
     FINANCE = 'FINANCE'
   }
