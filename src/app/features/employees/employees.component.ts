@@ -41,10 +41,9 @@ export class EmployeesComponent {
     const baseClasses = 'inline-flex items-center py-4 px-1 border-b-2 font-medium text-sm';
     const activeClasses = 'border-indigo-500 text-indigo-600';
     const inactiveClasses = 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300';
-    
-    return `${baseClasses} ${
-      this.selectedTabId === tabId ? activeClasses : inactiveClasses
-    }`;
+
+    return `${baseClasses} ${this.selectedTabId === tabId ? activeClasses : inactiveClasses
+      }`;
   }
 
 }

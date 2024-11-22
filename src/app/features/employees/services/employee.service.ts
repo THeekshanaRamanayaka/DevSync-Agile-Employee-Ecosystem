@@ -9,7 +9,7 @@ import { EmployeeInterface } from '../models/employee.interface';
 export class EmployeeService {
   private readonly apiUrl = 'http://localhost:8080/employee';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   // generateEmployeeId(): any {
   //   return this.http.get(`${this.apiUrl}/generate-employee-id`);

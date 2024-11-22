@@ -50,7 +50,7 @@ export class EmployeeCreateComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   // generateEmployeeId(): void {
   //   this.employeeService.generateEmployeeId().subscribe({
@@ -89,7 +89,7 @@ export class EmployeeCreateComponent implements OnInit {
     }
 
     console.log('Sending data', employeeData);
-    
+
     this.employeeService.createEmployee(employeeData).subscribe({
       next: (response: any) => {
         this.isSubmitting = false;
