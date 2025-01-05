@@ -1,12 +1,11 @@
 import { Injectable } from "@angular/core";
-import { CanActivate, Router, ActivatedRouteSnapshot } from "@angular/router";
+import { ActivatedRouteSnapshot, CanActivate, Router } from "@angular/router";
 import { AuthService } from "../services/auth.service";
 import { UserRole } from "../models/user.interface";
 
 @Injectable({
   providedIn: 'root'
 })
-
 export class RoleGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -23,7 +22,7 @@ export class RoleGuard implements CanActivate {
       return true;
     }
 
-    this.authService.redirectBasedOnRole(user);
+    this.authService.navigateBasedOnRole(user);
     return false;
   }
 }

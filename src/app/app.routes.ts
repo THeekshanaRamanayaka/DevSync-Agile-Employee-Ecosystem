@@ -27,7 +27,7 @@ export const routes: Routes = [
         path: 'admin',
         component: AdminComponent,
         canActivate: [AuthGuard, RoleGuard],
-        data: { role: UserRole.Admin },
+        data: { role: UserRole.ADMIN },
         children: [
             {
                 path: 'dashboard',
@@ -87,7 +87,7 @@ export const routes: Routes = [
         path: 'manager/:department', // Added department parameter
         component: ManagerComponent,
         canActivate: [AuthGuard, RoleGuard],
-        data: { role: UserRole.manager },
+        data: { role: UserRole.MANAGER },
         children: [
             {
                 path: 'dashboard',
@@ -104,11 +104,12 @@ export const routes: Routes = [
         path: 'employee',
         component: EmployeesComponent,
         canActivate: [AuthGuard, RoleGuard],
-        data: { role: UserRole.employee },
+        data: { role: UserRole.USER }, // Changed from UserRole.employee to UserRole.USER
         children: [
             {
                 path: 'dashboard',
-                component: DashboardComponent
+                component: DashboardComponent,
+                data: { role: UserRole.USER }
             },
             {
                 path: '',

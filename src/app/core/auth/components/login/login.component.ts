@@ -2,8 +2,8 @@ import { CommonModule, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
-import { Router, RouterLink } from '@angular/router';
-import { User } from '../../models/user.interface';
+import { Router } from '@angular/router';
+import { AuthResponse } from '../../models/auth-response';
 
 @Component({
   selector: 'app-login',
@@ -33,23 +33,18 @@ export class LoginComponent {
       this.isLoading = true;
       this.error = null;
 
-      const { email, password} = this.loginForm.value;
+      const { email, password } = this.loginForm.value;
       
       this.authService.login(email, password).subscribe({
-        next: (user: User) => {
+        next: (response: AuthResponse) => {
+          console.log('Login successful:', response);
           this.isLoading = false;
-          if (user && user.role) {
-            this.authService.redirectBasedOnRole(user);
-            // this.router.navigate(['/admin']);
-            console.log(user.role);
-            
-          } else {
-            this.error = 'Invalid user data received';
-          }
+          // Let AuthService handle navigation based on role
         },
         error: (error) => {
+          console.error('Login error:', error);
           this.isLoading = false;
-          this.error = error.error?.message || 'Login failed. Please try again.';
+          this.error = error.error?.message || 'An error occurred during login';
         }
       });
     }
